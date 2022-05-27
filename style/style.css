@@ -21,6 +21,7 @@ html, body {
 /* Container
 ========================= */
 .container {
+  width: 100%;
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 15px;
@@ -45,6 +46,12 @@ html, body {
 
 /* Burger
 ========================= */
+.header__container {
+  position: relative;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
 .header__burger {
   display: none;
@@ -99,10 +106,12 @@ html, body {
 ========================= */
 
 .header {
+  padding: 0 15px;
   width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
 }
 
@@ -146,14 +155,16 @@ html, body {
   width: 2rem;
   height: 2rem;
 }
-.header__cart__img:hover {
-  height: 3rem;
-  width: 3rem;
-}
+
 
 .header__cart__btn {
   margin-right: 40px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.header__cart__btn:hover {
+  transform: scale(1.5);
 }
 
 /* Main

@@ -7,11 +7,13 @@ const fixedHeader = () => {
   window.addEventListener('scroll', () => {
       const scrollPosition = this.window.scrollY;
       const mainHeight = main.scrollHeight;
-
+      const menu = document.querySelector('.header__navigation')
       if( scrollPosition > mainHeight ) {
         header.classList.add('fixed');
+        menu.style.right = "0px"
       } else {
         header.classList.remove('fixed');
+        menu.style.right = ""
       }
     });
 };
@@ -39,6 +41,11 @@ const toggleNavigation = () => {
   document.getElementById('toggleNav').addEventListener('click', () => {
     const nav = document.getElementById('header__navigation');
     nav.classList.toggle('show');
+    if(nav.classList.contains('show')) {
+      nav.style.right = "0px"
+    } else {
+      nav.style.right = ""
+    }
   })
 }
 
@@ -81,14 +88,3 @@ fixedHeader();
 toggleNavigation();
 charactersSlider();
 goUpBtn();
-
-const obj1 = {
-  a: 1,
-  b: 2,
-  c: 3
-}
-
-const obj2 = {...obj1, d:4}
-
-console.log(obj1)
-console.log(obj2)
