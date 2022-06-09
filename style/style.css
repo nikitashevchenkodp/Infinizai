@@ -892,17 +892,88 @@ html, body {
   display: none;
   align-items:center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
+  height: 100%;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
+  animation: fade;
+  animation-duration: 0.5s;
 }
 
-.modal_content {
-  height: 400px;
-  width: 400px;
-  background-color: #fff;
+@keyframes fade {
+
+  from {
+    opacity: 0.1;
+  };
+  to {
+    opacity: 1;
+  }
+  
+}
+
+.modal__dialog {
+  max-width:500px;
+  margin:40px auto
+}
+
+.modal__content {
+  position:relative;
+  width:100%;
+  padding:40px;
+  background-color:#fff;
+  border:1px solid rgba(0,0,0,.2);
+  border-radius:4px;
+  max-height:80vh;
+  overflow-y:auto; 
+  font-family: 'Orbitron', sans-serif;
+}
+
+.modal__close {
+  position:absolute;
+  top:8px;
+  right:14px;
+  font-size:30px;
+  color:#000;
+  opacity:.5;
+  font-weight:700;
+  border:none;
+  background-color:transparent;
+  cursor:pointer
+}
+
+.modal__title {
+  text-align:center;
+  font-size:22px;
+  text-transform:uppercase
+}
+
+.modal__input {
+  display:block;
+  margin:20px auto 20px auto;
+  width:280px;
+  height:50px;
+  background:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,.2);
+  border:none;font-size:18px;
+  text-align:center;
+  padding:0 20px;
+  outline:0; 
+  font-family: 'Orbitron', sans-serif;
+}
+
+.modal .btn {
+  display:block;
+  width:280px;
+  margin:0 auto;
+  background-color: var(--brand-color);
+  opacity: 0.8;
+  transition: 0.2s; 
+  font-family: 'Orbitron', sans-serif;
+}
+
+.modal .btn:hover {
+  opacity: 1;
 }
 

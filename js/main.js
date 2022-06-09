@@ -1,21 +1,20 @@
-
 const fixedHeader = () => {
 
   const header = document.querySelector('#header');
   const main = document.querySelector('#main');
 
   window.addEventListener('scroll', () => {
-      const scrollPosition = this.window.scrollY;
-      const mainHeight = main.scrollHeight;
-      const menu = document.querySelector('.header__navigation');
-      if( scrollPosition > mainHeight ) {
-        header.classList.add('fixed');
-        menu.style.right = "0px";
-      } else {
-        header.classList.remove('fixed');
-        menu.style.right = "";
-      }
-    });
+    const scrollPosition = this.window.scrollY;
+    const mainHeight = main.scrollHeight;
+    const menu = document.querySelector('.header__navigation');
+    if (scrollPosition > mainHeight) {
+      header.classList.add('fixed');
+      menu.style.right = "0px";
+    } else {
+      header.classList.remove('fixed');
+      menu.style.right = "";
+    }
+  });
 };
 
 /*Smooth scrol */
@@ -24,7 +23,7 @@ const smoothScroll = () => {
   document.addEventListener('click', (event) => {
     event.preventDefault();
     const id = event.target.dataset.scroll;
-    if( !id ) return
+    if (!id) return
     const elemPosition = document.getElementById(id).offsetTop;
     window.scrollTo({
       top: elemPosition - 50,
@@ -41,7 +40,7 @@ const toggleNavigation = () => {
   document.getElementById('toggleNav').addEventListener('click', () => {
     const nav = document.querySelector('#header__navigation');
     nav.classList.toggle('show');
-    if(nav.classList.contains('show')) {
+    if (nav.classList.contains('show')) {
       nav.style.right = "0px";
     } else {
       nav.style.right = "";
@@ -54,7 +53,7 @@ const toggleNavigation = () => {
 const charactersSlider = () => {
   const items = document.querySelectorAll('.select__character');
 
-  for(let item of items) {
+  for (let item of items) {
     item.addEventListener('click', (e) => {
       document.querySelector('.characters__info__select .active').classList.remove('active');
       const item = e.target.closest('.select__character');
@@ -73,7 +72,7 @@ const goUpBtn = () => {
     const elem = document.querySelector('.benefits');
     const elemPos = elem.getBoundingClientRect().top;
 
-    if( elemPos < 0 ) {
+    if (elemPos < 0) {
       document.querySelector('.go__up').classList.add('go__show');
     } else {
       document.querySelector('.go__up').classList.remove('go__show');
@@ -82,24 +81,38 @@ const goUpBtn = () => {
 
 };
 
+// Modal
+const modal = () => {
+  const triggers = document.querySelectorAll('a.btn'),
+    modal = document.querySelector('.modal'),
+    closeBtn = document.querySelector('.modal__close');
 
-const trigger = document.querySelector('.btn__header'),
-        modal = document.querySelector('.modal');
-
-const showModal = () => {
-  trigger.addEventListener('click', () => {
+  const showModal = () => {
     modal.style.display = 'flex';
-  });
-};
+    document.body.style.overflow = 'hidden';
+    clearTimeout(modalTimerId);
+  };
 
-const hideModal = () => {
+  triggers.forEach(element => {
+    element.addEventListener('click', showModal);
+  });
+
+  const hideModal = () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  };
+
   modal.addEventListener('click', (e) => {
     const target = e.target;
-    if(modal == target) {
-      modal.style.display = 'none';
+    if (modal == target || target == closeBtn) {
+      hideModal();
     }
   });
-};
+
+  const modalTimerId = setTimeout(showModal, 5000);
+
+}
+
 
 
 smoothScroll();
@@ -107,5 +120,4 @@ fixedHeader();
 toggleNavigation();
 charactersSlider();
 goUpBtn();
-showModal();
-hideModal();
+modal();

@@ -429,8 +429,16 @@
   </footer>
   <!--Modal-->
   <div class="modal">
-    <div class="modal_content">
-        
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <form action="#">
+          <div class="modal__close">&times;</div>
+          <div class="modal__title">We will contact you!</div>
+          <input required placeholder="Your Name" name="name" type="text" class="modal__input">
+          <input required placeholder="Your Phone Number" name="phone" type="phone" class="modal__input">
+          <button class="btn btn_dark btn_min">Call me</button>
+      </form>
+      </div>
     </div>
   </div>
   <!--JS-->
