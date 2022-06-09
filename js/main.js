@@ -1,19 +1,19 @@
 
 const fixedHeader = () => {
 
-  const header = document.getElementById('header');
-  const main = document.getElementById('main');
+  const header = document.querySelector('#header');
+  const main = document.querySelector('#main');
 
   window.addEventListener('scroll', () => {
       const scrollPosition = this.window.scrollY;
       const mainHeight = main.scrollHeight;
-      const menu = document.querySelector('.header__navigation')
+      const menu = document.querySelector('.header__navigation');
       if( scrollPosition > mainHeight ) {
         header.classList.add('fixed');
-        menu.style.right = "0px"
+        menu.style.right = "0px";
       } else {
         header.classList.remove('fixed');
-        menu.style.right = ""
+        menu.style.right = "";
       }
     });
 };
@@ -30,7 +30,7 @@ const smoothScroll = () => {
       top: elemPosition - 50,
       behavior: 'smooth'
     });
-    const nav = document.getElementById('header__navigation');
+    const nav = document.querySelector('#header__navigation');
     nav.classList.remove('show');
   });
 };
@@ -39,12 +39,12 @@ const smoothScroll = () => {
 
 const toggleNavigation = () => {
   document.getElementById('toggleNav').addEventListener('click', () => {
-    const nav = document.getElementById('header__navigation');
+    const nav = document.querySelector('#header__navigation');
     nav.classList.toggle('show');
     if(nav.classList.contains('show')) {
-      nav.style.right = "0px"
+      nav.style.right = "0px";
     } else {
-      nav.style.right = ""
+      nav.style.right = "";
     }
   })
 }
@@ -83,8 +83,29 @@ const goUpBtn = () => {
 };
 
 
+const trigger = document.querySelector('.btn__header'),
+        modal = document.querySelector('.modal');
+
+const showModal = () => {
+  trigger.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+};
+
+const hideModal = () => {
+  modal.addEventListener('click', (e) => {
+    const target = e.target;
+    if(modal == target) {
+      modal.style.display = 'none';
+    }
+  });
+};
+
+
 smoothScroll();
 fixedHeader();
 toggleNavigation();
 charactersSlider();
 goUpBtn();
+showModal();
+hideModal();
